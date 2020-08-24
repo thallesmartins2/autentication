@@ -81,7 +81,7 @@ class User extends Authenticatable
         DB::beginTransaction();
         if (self::verifyInputUser($request->all())) {
             try {
-                self::create($request->all());
+                self::create(self::mountArrayToInsert($request));
                 DB::commit();
                 return ['mensagem' => 'Usuário criado com sucesso'];
             } catch (\Throwable $th) {
@@ -91,6 +91,17 @@ class User extends Authenticatable
             return ['mensagem' => 'Favor inserir os campos corretamente'];
         }
 
+    }
+
+    public static function mountArrayToInsert($request)
+    {
+        return [
+            'name' => $request->name,
+            'cpf_cnpj' => $request->cpf_cnpj,
+            'email' => $request->email,
+            'user_type_id' => $request->user_type_id,
+            'password' => Hash::make($request->password)
+        ];
     }
 
     public static function deleteUserById($id)

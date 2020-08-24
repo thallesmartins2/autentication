@@ -13,7 +13,7 @@ use App\User;
 
 class AuthController extends Controller
 {
-    public function solicitaToken(LoginFormRequest $request)
+    public function token(LoginFormRequest $request)
     {
         if ($request->validated()) {
 
@@ -54,12 +54,12 @@ class AuthController extends Controller
         }
     }
     
-    public function acessoNaoAutorizado()
+    public function unauthorizedAccess()
     {
         return response()->json(['mensagem'=>'Token invalido', 'dados' => ''],Response::HTTP_NON_AUTHORITATIVE_INFORMATION);
     }
 
-    public function acessoAutorizado()
+    public function authorizedAcess()
     {
         return response()->json(['mensagem' => 'valido','dados' => ''], Response::HTTP_OK);
     }

@@ -14,12 +14,12 @@ use Illuminate\Http\Response;
 |
 */
 Route::namespace('Api\v1')->group( function(){
-    Route::post('solicitatoken','AuthController@solicitaToken');
-    Route::get('acessonaoautorizado','AuthController@acessoNaoAutorizado')->name('acessonaoautorizado');
+    Route::post('token','AuthController@token');
+    Route::get('acessonaoautorizado','AuthController@unauthorizedAccess')->name('acessonaoautorizado');
     Route::resource('autentication','UserController');
 });
 
 Route::middleware('auth:api')->namespace('Api\v1')->group( function(){
-    Route::get('validatoken','AuthController@acessoAutorizado');
+    Route::get('checktoken','AuthController@authorizedAcess');
     Route::post('logout','AuthController@logout');
 });
