@@ -19,8 +19,5 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'https://adm.dev.portalssp.com/',
-        'https://adm-chamado.dev.portalssp.com/',
-        'https://adm-corretiva.dev.portalssp.com/'
     ];
 }
